@@ -1,4 +1,4 @@
-# NPM mono repository
+# paradedb repository
 
 
 [![GitHub tag](https://img.shields.io/github/tag/waitingsong/npm-mono-base.svg)]()
