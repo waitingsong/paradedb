@@ -9,7 +9,6 @@ import { dbConfig } from '#@/config.unittest.js'
 
 describe(fileShortPath(import.meta.url), () => {
   const idxName = genRandomName(6)
-  let trx: Transaction
 
   const f1: TextFieldsDo = {
     fieldName: 'description',
@@ -33,25 +32,27 @@ describe(fileShortPath(import.meta.url), () => {
   const idx = new IndexManager(dbh)
   assert(idx)
 
-  before(async () => {
-    trx = await idx.startTransaction()
-  })
   after(async () => {
-    await trx.rollback()
     await dbh.destroy()
   })
 
   describe(`Index.createBm25() ${idxName}`, () => {
     it('normal', async () => {
-      assert(trx, 'trx not exists')
       const options: CreateBm25Options = {
         indexName: idxName,
         tableName: 'mock_items',
         keyField: 'id',
         textFields,
-        trx,
       }
       await idx.createBm25(options)
+
+      const sql2 = `
+        CALL paradedb.drop_bm25(
+          index_name => ?
+        );
+      `
+      const data2 = [idxName]
+      await idx.execute(sql2, data2, null)
     })
   })
 

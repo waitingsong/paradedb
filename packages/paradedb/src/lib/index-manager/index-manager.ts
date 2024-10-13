@@ -21,7 +21,7 @@ export class IndexManager {
    * @link https://docs.paradedb.com/documentation/indexing/create_index
    */
   async createBm25(options: CreateBm25Options): Promise<void> {
-    const trx = options.trx ?? await this.startTransaction()
+    const { trx } = options
     const sql = IndexSql.create_bm25
 
     const [ids, data] = this.parseCreateBm25Options(options)
