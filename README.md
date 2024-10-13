@@ -7,6 +7,10 @@
 )](https://github.com/waitingsong/paradedb/actions)
 [![codecov](https://codecov.io/gh/waitingsong/paradedb/graph/badge.svg?token=oDHz5mmy7x)](https://codecov.io/gh/waitingsong/paradedb)
 
+[ParadeDB] is an Elasticsearch alternative built on Postgres.
+We're modernizing the features of Elasticsearch's product suite, 
+starting with real-time search and analytics.
+
 
 ## Packages
 
