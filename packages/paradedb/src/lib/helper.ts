@@ -13,8 +13,8 @@ const regex = /\d/u
 export function genRandomName(length = 32): string {
   const str = _genRandomString(length + 1).toLowerCase()
   if (regex.test(str[0] as unknown as string)) {
-    return 'a' + str.slice(0, -1)
+    return 'a' + str.slice(2)
   }
-  return str
+  return str.slice(0, length)
 }
 
