@@ -3,33 +3,14 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 import type { Knex } from 'knex'
 
-import { type CreateBm25Options, type TextFieldsDo, IndexManager } from '##/index.js'
+import { type CreateBm25Options, IndexManager } from '##/index.js'
+
+import { expectedDataBase, expectedIdsBase, options } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   const dbh = void 0 as unknown as Knex
   const idx = new IndexManager(dbh)
-  const options: CreateBm25Options = {
-    indexName: 'search_idx',
-    tableName: 'mock_items',
-    keyField: 'id',
-  }
-  const expectedIdsBase = ['index_name => ?', 'table_name => ?', 'key_field => ?']
-  const expectedDataBase = [options.indexName, options.tableName, options.keyField]
-
-  const f1: TextFieldsDo = {
-    fieldName: 'description',
-    indexed: true,
-    stored: false,
-    record: 'position',
-    normalizer: 'raw',
-  }
-  const f2: TextFieldsDo = {
-    fieldName: 'category',
-    indexed: false,
-    stored: true,
-    record: 'basic',
-  }
 
   describe(`IndexManager.parseCreateBm25Options()`, () => {
     it('with textFields: TextFields', async () => {
@@ -59,7 +40,6 @@ describe(fileShortPath(import.meta.url), () => {
       assert.deepStrictEqual(ids, expectedIds)
       assert.deepStrictEqual(data, expectedData)
     })
-
   })
 })
 

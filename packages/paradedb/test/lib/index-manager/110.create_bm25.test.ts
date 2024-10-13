@@ -3,28 +3,15 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 import _knex from 'knex'
 
-import { type CreateBm25Options, type TextFieldsDo, type Transaction, IndexManager, genRandomName } from '##/index.js'
+import { type CreateBm25Options, IndexManager, genRandomName } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
+
+import { f1, f2 } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   const idxName = genRandomName(6)
-
-  const f1: TextFieldsDo = {
-    fieldName: 'description',
-    indexed: true,
-    stored: false,
-    record: 'position',
-    normalizer: 'raw',
-  }
-  const f2: TextFieldsDo = {
-    fieldName: 'category',
-    indexed: false,
-    stored: true,
-    record: 'basic',
-  }
   const textFields: CreateBm25Options['textFields'] = [f1, f2]
-
 
   // eslint-disable-next-line import/no-named-as-default-member
   const dbh = _knex.knex(dbConfig)
