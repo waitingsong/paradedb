@@ -64,12 +64,12 @@ const pdb = new ParadeDb('master', { connection })
 <br>
 
 [paradedb]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
-[main-svg]: https://img.shields.io/npm/v/paradedb.svg?maxAge=7200
+[main-svg]: https://img.shields.io/npm/v/paradedb.svg?maxAge=300
 [main-ch]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/CHANGELOG.md
 
 
 [`demo-cli`]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-cli
-[cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=7200
+[cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=300
 [cli-ch]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-clie/CHANGELOG.md
 
 
