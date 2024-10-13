@@ -7,7 +7,7 @@ export const initDbConnectionConfig: DbConnectionConfig = {
   database: process.env['PARADEDB_DB'] ? process.env['PARADEDB_DB'] : 'postgres',
   user: process.env['PARADEDB_USER'] ? process.env['PARADEDB_USER'] : 'postgres',
   password: process.env['PARADEDB_PASSWORD'] ? process.env['PARADEDB_PASSWORD'] : 'postgres',
-  statement_timeout: 6000, // in milliseconds
+  statement_timeout: 10_000, // in milliseconds
 }
 
 export const initDbConfigPart: Omit<DbConfig, 'connection'> = {
