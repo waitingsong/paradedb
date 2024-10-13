@@ -139,6 +139,7 @@ export class IndexManager {
           case 'function': // trx
             break
 
+          /* c8 ignore next 2 */
           default:
             throw new TypeError(`Unknown type: ${typeof val} of ${key} in options`)
         }
