@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/waitingsong/paradedb/compare/v0.2.4...v0.3.0) (2024-10-13)
+
+
+### Features
+
+* **paradedb:** Delete an Index via Index.dropBm25() ([11cc686](https://github.com/waitingsong/paradedb/commit/11cc6861d3aaa4a819ac772699c01116c34bd07c))
+
+
+
+
+
 ## [0.2.4](https://github.com/waitingsong/paradedb/compare/v0.2.3...v0.2.4) (2024-10-13)
 
 **Note:** Version bump only for package paradedb
