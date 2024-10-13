@@ -53,6 +53,14 @@ npm i paradedb
   ```
   [More examples](https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/test/lib/index-manager)
 
+- [Drop an Index]
+  ```ts
+  const options: DropBm25Options = {
+    indexName: 'search_idx',
+  }
+  await pdb.index.dropBm25(options)
+  ```
+
 
 ## License
 [MIT](LICENSE)
@@ -78,5 +86,5 @@ npm i paradedb
 [ParadeDB]: https://www.paradedb.com/
 
 [Create an Index]: https://docs.paradedb.com/documentation/indexing/create_index
-<!-- [Delete an Index]: https://docs.paradedb.com/documentation/indexing/delete_index -->
+[Drop an Index]: https://docs.paradedb.com/documentation/indexing/delete_index
 

@@ -33,5 +33,16 @@ export interface CreateBm25Options extends OptionsBase {
   jsonFields?: JsonFieldsDo | string
 }
 
+/**
+ * Drop an Index
+ * @link https://docs.paradedb.com/documentation/indexing/delete_index
+ */
+export interface DropBm25Options extends OptionsBase {
+  indexName: string
+  /**
+   * @default CURRENT SCHEMA
+   */
+  schemaName?: string
+}
 
 /* c8 ignore stop */

@@ -6,7 +6,7 @@ import type { Knex, Transaction } from '../knex.types.js'
 
 import type { ArrayFieldsDo, FieldsDoBase } from './index.do.js'
 import { IndexSql } from './index.sql.js'
-import { type CreateBm25Options } from './index.types.js'
+import { type CreateBm25Options, type DropBm25Options } from './index.types.js'
 
 
 export class IndexManager {
@@ -14,7 +14,7 @@ export class IndexManager {
 
   fieldsKey = ['textFields', 'numericFields', 'booleanFields', 'datetimeFields', 'jsonFields']
 
-  // #region send
+  // #region createBm25
 
   /**
    * Create an Index
@@ -175,6 +175,58 @@ export class IndexManager {
 
     return [fieldName, ret]
   }
+
+
+  // #region dropBm25
+
+  /**
+   * Drop an Index
+   * @link https://docs.paradedb.com/documentation/indexing/delete_index
+   */
+  async dropBm25(options: DropBm25Options): Promise<void> {
+    const { trx } = options
+    const sql = IndexSql.drop_bm25
+
+    const [ids, data] = this.parseDropBm25Options(options)
+    const param = '\n' + ids.join(',\n') + '\n'
+    const query = sql.replace('$PARAMS', param)
+    await this.execute(query, data, trx)
+  }
+
+  parseDropBm25Options(options: DropBm25Options): [string[], unknown[]] {
+    const ids: string[] = []
+    const data: unknown[] = []
+
+    // { indexName => 'search_idx',
+    //   schema_name => 'public'
+    // }
+    for (const [key, val] of Object.entries(options)) {
+      if (typeof val === 'undefined') { continue }
+
+      const key2 = camelToSnake(key)
+      // escape single quote
+      const key2Escaped = key2.replace(/'/gu, '\'\'')
+
+      switch (typeof val) {
+        case 'string': {
+          ids.push(`${key2Escaped} => ?`)
+          data.push(val)
+          break
+        }
+
+        /* c8 ignore next 2 */
+        case 'function': // trx
+          break
+
+          /* c8 ignore next 2 */
+        default:
+          throw new TypeError(`Unknown type: ${typeof val} of ${key} in options`)
+      }
+    } // end for
+
+    return [ids, data]
+  }
+
 
   async execute<T = unknown>(sql: string, params: unknown[], trx: Transaction | undefined | null): Promise<T> {
     const dbh = trx ?? this.dbh
