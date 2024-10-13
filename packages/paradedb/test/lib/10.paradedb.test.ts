@@ -29,6 +29,14 @@ describe(fileShortPath(import.meta.url), () => {
       const flag = await pdb.setTimeZone('UTC')
       assert(flag === 'UTC', 'setTimeZone failed:' + flag)
     })
+
+    it(`startTransaction()`, async () => {
+      const trx = await pdb.startTransaction()
+      assert(trx)
+      assert(! trx.isCompleted())
+      await trx.rollback()
+    })
+
   })
 })
 
