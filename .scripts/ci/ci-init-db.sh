@@ -17,3 +17,12 @@ echo -e "\n"
 # . ./init-db.sh
 # cd -
 
+
+psql -h $PARADEDB_HOST -p $PARADEDB_PORT -U$PARADEDB_USER -d $PARADEDB_DB -c "SELECT version();"
+psql -h $PARADEDB_HOST -p $PARADEDB_PORT -U$PARADEDB_USER -d $PARADEDB_DB -c "SHOW TIMEZONE;"
+SQL_DIR='./packages/paradedb/database/'
+
+cd "$SQL_DIR"
+pwd
+. ./init-db.sh
+cd -

@@ -5,6 +5,7 @@
   "description": "ParadeDb JavaScript Client Library",
   "private": false,
   "keywords": [
+    "ParadeDb",
     "elasticsearch",
     "BM25",
     "pg_bm25",
