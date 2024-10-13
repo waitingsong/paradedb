@@ -6,6 +6,7 @@
   "private": false,
   "keywords": [
     "ParadeDb",
+    "parade",
     "elasticsearch",
     "BM25",
     "pg_bm25",
