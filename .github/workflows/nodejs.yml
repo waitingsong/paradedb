@@ -93,7 +93,7 @@ jobs:
         run: |
           export cwd=`pwd`
           npm i --no-audit -g c8 lerna madge tsx zx
-          npm i
+          npm i --no-audit
         env:
           CI: true
 
