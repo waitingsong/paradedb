@@ -125,18 +125,7 @@ export class IndexManager {
             break
           }
 
-          case 'boolean': {
-            ids.push(`${key2Escaped} => ?`)
-            data.push(val)
-            break
-          }
-
-          case 'number': {
-            ids.push(`${key2Escaped} => ?`)
-            data.push(val)
-            break
-          }
-
+          /* c8 ignore next 2 */
           case 'function': // trx
             break
 
@@ -174,19 +163,13 @@ export class IndexManager {
           break
         }
 
-        case 'number': {
-          ret.set(key2, val)
-          break
-        }
-
+        /* c8 ignore next 2 */
         case 'undefined':
           continue
 
-        case 'object':
-          throw new TypeError('ArrayFieldsObject not supported yet')
-
+        /* c8 ignore next 2 */
         default:
-          throw new TypeError(`Unknown type: ${typeof val}`)
+          throw new TypeError(`Unknown type: ${typeof val}, key: ${key}`)
       }
     }
 
