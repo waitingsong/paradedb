@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import type { OptionsBase } from '../types.js'
 
 import type {
@@ -32,3 +33,5 @@ export interface CreateBm25Options extends OptionsBase {
   jsonFields?: JsonFieldsDo | string
 }
 
+
+/* c8 ignore stop */
