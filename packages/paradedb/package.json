@@ -38,12 +38,12 @@
     "./package.json": "./package.json"
   },
   "bugs": {
-    "url": "https://github.com/waitingsong/npm-mono-base/issues"
+    "url": "https://github.com/waitingsong/paradedb/issues"
   },
-  "homepage": "https://github.com/waitingsong/npm-mono-base#readme",
+  "homepage": "https://github.com/waitingsong/paradedb#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/waitingsong/npm-mono-base"
+    "url": "https://github.com/waitingsong/paradedb"
   },
   "license": "MIT",
   "dependencies": {
