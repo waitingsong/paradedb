@@ -17,20 +17,6 @@ describe(fileShortPath(import.meta.url), () => {
   const expectedIdsBase = ['index_name => ?', 'table_name => ?', 'key_field => ?']
   const expectedDataBase = [options.indexName, options.tableName, options.keyField]
 
-  const f1: TextFieldsDo = {
-    fieldName: 'description',
-    indexed: true,
-    stored: false,
-    record: 'position',
-    normalizer: 'raw',
-  }
-  const f2: TextFieldsDo = {
-    fieldName: 'category',
-    indexed: false,
-    stored: true,
-    record: 'basic',
-  }
-
   describe(`IndexManager.parseCreateBm25Options()`, () => {
     it('simple', async () => {
       const [ids, data] = idx.parseCreateBm25Options(options)
