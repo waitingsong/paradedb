@@ -27,19 +27,19 @@ npm i paradedb
 ## Usage
 
 - Initialize ParadeDb instance
-```ts
-import { ParadeDb, type DbConnectionConfig } from 'paradedb'
+  ```ts
+  import { ParadeDb, type DbConnectionConfig } from 'paradedb'
 
-const connection: DbConnectionConfig  = {
-  host: process.env['PARADEDB_HOST'] ? process.env['PARADEDB_HOST'] : 'localhost',
-  port: process.env['PARADEDB_PORT'] ? +process.env['PARADEDB_PORT'] : 5432,
-  database: process.env['PARADEDB_DB'] ? process.env['PARADEDB_DB'] : 'postgres',
-  user: process.env['PARADEDB_USER'] ? process.env['PARADEDB_USER'] : 'postgres',
-  password: process.env['PARADEDB_PASSWORD'] ? process.env['PARADEDB_PASSWORD'] : 'password',
-}
+  const connection: DbConnectionConfig  = {
+    host: process.env['PARADEDB_HOST'] ? process.env['PARADEDB_HOST'] : 'localhost',
+    port: process.env['PARADEDB_PORT'] ? +process.env['PARADEDB_PORT'] : 5432,
+    database: process.env['PARADEDB_DB'] ? process.env['PARADEDB_DB'] : 'postgres',
+    user: process.env['PARADEDB_USER'] ? process.env['PARADEDB_USER'] : 'postgres',
+    password: process.env['PARADEDB_PASSWORD'] ? process.env['PARADEDB_PASSWORD'] : 'password',
+  }
 
-const pdb = new ParadeDb('master', { connection })
-```
+  const pdb = new ParadeDb('master', { connection })
+  ```
 
 - [Create an Index]
   ```ts
