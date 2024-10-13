@@ -41,7 +41,6 @@ jobs:
 
       - name: Prepare
         run: |
-          pwd
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
@@ -63,7 +62,7 @@ jobs:
 
       - name: Verify
         run: |
-          # psql -V
+          psql -V
           dig postgres
           echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
           psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SELECT version();"
@@ -92,7 +91,6 @@ jobs:
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           npm i --no-audit -g c8 lerna madge tsx zx
           npm i
@@ -101,7 +99,6 @@ jobs:
 
       - name: Build
         run: |
-          pwd
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh

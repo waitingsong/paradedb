@@ -96,9 +96,10 @@ jobs:
           POSTGRES_DB: db_ci_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          PGPASSWORD: postgres
           # paradedb
           PARADEDB_HOST: paradedb
-          PARADEDB_PORT: 5433
+          PARADEDB_PORT: 5432
           PARADEDB_DB: db_ci_test
           PARADEDB_USER: postgres
           PARADEDB_PASSWORD: postgres
@@ -148,7 +149,7 @@ jobs:
           PGPASSWORD: postgres
           # paradedb
           PARADEDB_HOST: paradedb
-          PARADEDB_PORT: 5433
+          PARADEDB_PORT: 5432
           PARADEDB_DB: db_ci_test
           PARADEDB_USER: postgres
           PARADEDB_PASSWORD: postgres
@@ -172,7 +173,7 @@ jobs:
           PGPASSWORD: postgres
           # paradedb
           PARADEDB_HOST: paradedb
-          PARADEDB_PORT: 5433
+          PARADEDB_PORT: 5432
           PARADEDB_DB: db_ci_test
           PARADEDB_USER: postgres
           PARADEDB_PASSWORD: postgres
