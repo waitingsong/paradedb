@@ -78,7 +78,7 @@
     "clean:dist": "npm run clean:cache && rm -rf dist/*",
     "clean:lock": "rm -f package-lock.json",
     "clean:log": "rm -rf ./logs ./run",
-    "cov": "c8 --all npm run test",
+    "cov": "c8 --all npm run test:deb",
     "lint": "eslint --fix --cache src test",
     "lint:nofix": "eslint --cache src test",
     "postbuild": "tsc-alias && npm run rp",
