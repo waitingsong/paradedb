@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/waitingsong/paradedb/compare/v0.2.2...v0.2.3) (2024-10-13)
+
+
+### Bug Fixes
+
+* **paradedb:** result length of genRandomName() ([de55336](https://github.com/waitingsong/paradedb/commit/de5533659fbfc141f90b6af41dc168f2838b64f8))
+
+
+
+
+
 ## [0.2.2](https://github.com/waitingsong/paradedb/compare/v0.2.1...v0.2.2) (2024-10-13)
 
 **Note:** Version bump only for package paradedb
