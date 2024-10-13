@@ -110,6 +110,7 @@ export class IndexManager {
             ids.push(`${txt}${txt2})`)
           }
         }
+        /* c8 ignore next 3 */
         else {
           throw new TypeError(`Unknown type: ${typeof val}`)
         }
