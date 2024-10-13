@@ -41,7 +41,7 @@ describe(fileShortPath(import.meta.url), () => {
     await dbh.destroy()
   })
 
-  describe(`paradedb.create_bm25 ${idxName}`, () => {
+  describe(`Index.createBm25() ${idxName}`, () => {
     it('normal', async () => {
       assert(trx, 'trx not exists')
       const options: CreateBm25Options = {
