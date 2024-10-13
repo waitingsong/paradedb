@@ -8,13 +8,26 @@ import { dbConfig } from '#@/config.unittest.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
+  let pdb: ParadeDb
+  before(async () => {
+    pdb = new ParadeDb('test', dbConfig)
+    assert(pdb)
+    assert(pdb.index)
+    assert(pdb.index instanceof IndexManager)
+  })
+  after(async () => {
+    await pdb.destroy()
+  })
 
   describe(`Paradedb`, () => {
-    it('normal', async () => {
-      const paradedb = new ParadeDb('master', dbConfig)
-      assert(paradedb)
-      assert(paradedb.index)
-      assert(paradedb.index instanceof IndexManager)
+    it(`getCurrentTime()`, async () => {
+      const ret = await pdb.getCurrentTime()
+      assert(ret instanceof Date, 'getCurrentTime failed:')
+    })
+
+    it(`setTimeZone()`, async () => {
+      const flag = await pdb.setTimeZone('UTC')
+      assert(flag === 'UTC', 'setTimeZone failed:' + flag)
     })
   })
 })
