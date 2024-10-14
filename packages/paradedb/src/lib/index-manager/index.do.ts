@@ -130,5 +130,8 @@ export interface IndexSchemaDo {
   normalizer: NormalizerType
 }
 
+export interface IndexSizeDo {
+  index_size: string
+}
 
 /* c8 ignore stop */

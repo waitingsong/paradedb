@@ -4,9 +4,15 @@ import { camelKeys, camelToSnake } from '@waiting/shared-core'
 
 import type { Knex, QueryResponse, Transaction } from '../knex.types.js'
 
-import type { ArrayFieldsDo, FieldsDoBase, IndexSchemaDo } from './index.do.js'
+import type { ArrayFieldsDo, FieldsDoBase, IndexSchemaDo, IndexSizeDo } from './index.do.js'
 import { IndexSql } from './index.sql.js'
-import { type CreateBm25Options, type DropBm25Options, type IndexSchemaDto, type IndexSchemaOptions } from './index.types.js'
+import type {
+  CreateBm25Options,
+  DropBm25Options,
+  IndexSchemaDto,
+  IndexSchemaOptions,
+  IndexSizeOptions,
+} from './index.types.js'
 
 
 export class IndexManager {
@@ -249,6 +255,34 @@ export class IndexManager {
       if (ex.message.includes('does not exist')) {
         return []
       }
+      /* c8 ignore next 2 */
+      throw ex
+    }
+  }
+
+  // #region size
+
+  /**
+   * Get the size of an index in bytes,
+   * return zero if the index does not exist.
+   * @link https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
+   */
+  async size(options: IndexSizeOptions): Promise<bigint> {
+    const { trx, indexName } = options
+    assert(indexName, 'indexName is required')
+    const sql = IndexSql.IndexSize
+    const query = sql.replace('$PARAM', `"${indexName}"`)
+    try {
+      const res = await this.execute<QueryResponse<IndexSizeDo>>(query, [], trx)
+      const ret = res.rows[0] ? BigInt(res.rows[0].index_size) : 0n
+      return ret
+    }
+    catch (ex) {
+      assert(ex instanceof Error, 'ex not an instance of Error')
+      if (ex.message.includes('does not exist')) {
+        return 0n
+      }
+      /* c8 ignore next 2 */
       throw ex
     }
   }

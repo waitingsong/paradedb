@@ -14,5 +14,9 @@ export enum IndexSql {
    * @link https://docs.paradedb.com/documentation/indexing/inspect_index
    */
   IndexSchema = 'SELECT * FROM $PARAM.schema()',
+  /**
+   * @link https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
+   */
+  IndexSize = 'SELECT * FROM $PARAM.index_size()',
 }
 

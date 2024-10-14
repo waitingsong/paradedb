@@ -66,6 +66,13 @@ npm i paradedb
   assert(rows.length, 'Not found')
   ```
 
+- [Index Size]
+  ```ts
+  const size: bigint = await idx.size({ indexName: 'search_idx' })
+  // 0n means not found
+  ```
+
+
 ## License
 [MIT](LICENSE)
 
@@ -92,4 +99,5 @@ npm i paradedb
 [Create an Index]: https://docs.paradedb.com/documentation/indexing/create_index
 [Drop an Index]: https://docs.paradedb.com/documentation/indexing/delete_index
 [Index Schema]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-schema
+[Index Size]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
 

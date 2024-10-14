@@ -57,6 +57,10 @@ export interface IndexSchemaOptions extends OptionsBase {
   indexName: string
 }
 
+/**
+ * @link https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
+ */
+export type IndexSizeOptions = IndexSchemaOptions
 
 export type IndexSchemaDto = RecordCamelKeys<IndexSchemaDo>
 
