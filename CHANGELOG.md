@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/waitingsong/paradedb/compare/v0.5.0...v0.6.0) (2024-10-14)
+
+
+### Features
+
+* **paradedb:** Index Size via Index.size() ([c9cd9c9](https://github.com/waitingsong/paradedb/commit/c9cd9c9d81b6af052075000a8925777c9b5e6aa9))
+
+
+
+
+
 # [0.5.0](https://github.com/waitingsong/paradedb/compare/v0.4.0...v0.5.0) (2024-10-14)
 
 **Note:** Version bump only for package paradedb
