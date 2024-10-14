@@ -23,3 +23,12 @@ export const f2: TextFieldsDo = {
   record: 'basic',
 }
 
+export const f3: TextFieldsDo = {
+  fieldName: 'description',
+  fast: false,
+  fieldnorms: true,
+  indexed: true,
+  stored: true,
+  record: 'position',
+  normalizer: 'raw',
+}

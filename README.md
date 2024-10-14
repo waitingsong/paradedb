@@ -61,6 +61,12 @@ npm i paradedb
   await pdb.index.dropBm25(options)
   ```
 
+- [Index Schema]
+  ```ts
+  const rows: IndexSchemaDto[] = await idx.schema({ indexName: 'search_idx' })
+  assert(rows.length, 'Not found')
+  ```
+
 
 ## License
 [MIT](LICENSE)
@@ -87,4 +93,5 @@ npm i paradedb
 
 [Create an Index]: https://docs.paradedb.com/documentation/indexing/create_index
 [Drop an Index]: https://docs.paradedb.com/documentation/indexing/delete_index
+[Index Schema]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-schema
 

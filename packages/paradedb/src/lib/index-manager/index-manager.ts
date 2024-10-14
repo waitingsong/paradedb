@@ -1,12 +1,12 @@
 import assert from 'node:assert'
 
-import { camelToSnake } from '@waiting/shared-core'
+import { camelKeys, camelToSnake } from '@waiting/shared-core'
 
-import type { Knex, Transaction } from '../knex.types.js'
+import type { Knex, QueryResponse, Transaction } from '../knex.types.js'
 
-import type { ArrayFieldsDo, FieldsDoBase } from './index.do.js'
+import type { ArrayFieldsDo, FieldsDoBase, IndexSchemaDo } from './index.do.js'
 import { IndexSql } from './index.sql.js'
-import { type CreateBm25Options, type DropBm25Options } from './index.types.js'
+import { type CreateBm25Options, type DropBm25Options, type IndexSchemaDto, type SchemaOptions } from './index.types.js'
 
 
 export class IndexManager {
@@ -227,6 +227,31 @@ export class IndexManager {
     return [ids, data]
   }
 
+  // #region schema
+
+  /**
+   * The `schema` function returns a table with information about the index schema.
+   * This is useful for inspecting how an index was configured.
+   * @link https://docs.paradedb.com/documentation/indexing/inspect_index
+   */
+  async schema(options: SchemaOptions): Promise<IndexSchemaDto[]> {
+    const { trx, indexName } = options
+    assert(indexName, 'indexName is required')
+    const sql = IndexSql.IndexSchema
+    const query = sql.replace('$PARAM', `"${indexName}"`)
+    try {
+      const res = await this.execute<QueryResponse<IndexSchemaDo>>(query, [], trx)
+      const ret = res.rows.length ? res.rows.map(row => camelKeys(row)) : []
+      return ret
+    }
+    catch (ex) {
+      assert(ex instanceof Error, 'ex not an instance of Error')
+      if (ex.message.includes('does not exist')) {
+        return []
+      }
+      throw ex
+    }
+  }
 
   async execute<T = unknown>(sql: string, params: unknown[], trx: Transaction | undefined | null): Promise<T> {
     const dbh = trx ?? this.dbh

@@ -116,4 +116,19 @@ export type DatetimeFieldsDo = FieldsDoBase
  */
 export type ArrayFieldsDo<T extends TextFieldsDo | NumericFieldsDo = FieldsDoBase> = T[]
 
+
+export interface IndexSchemaDo {
+  name: string
+  field_type: string
+  stored: boolean
+  indexed: boolean
+  fast: boolean
+  fieldnorms: boolean
+  expand_dots: boolean | null
+  // tokenizer: string | null
+  record: RecordType
+  normalizer: NormalizerType
+}
+
+
 /* c8 ignore stop */

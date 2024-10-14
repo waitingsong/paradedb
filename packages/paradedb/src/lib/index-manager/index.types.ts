@@ -1,10 +1,13 @@
 /* c8 ignore start */
+import type { RecordCamelKeys } from '@waiting/shared-types'
+
 import type { OptionsBase } from '../types.js'
 
 import type {
   ArrayFieldsDo,
   BooleanFieldsDo,
   DatetimeFieldsDo,
+  IndexSchemaDo,
   JsonFieldsDo,
   NumericFieldsDo,
   TextFieldsDo,
@@ -44,5 +47,16 @@ export interface DropBm25Options extends OptionsBase {
    */
   schemaName?: string
 }
+
+/**
+ * The `schema` function returns a table with information about the index schema.
+ * This is useful for inspecting how an index was configured.
+ * @link https://docs.paradedb.com/documentation/indexing/inspect_index
+ */
+export interface SchemaOptions extends OptionsBase {
+  indexName: string
+}
+
+export type IndexSchemaDto = RecordCamelKeys<IndexSchemaDo>
 
 /* c8 ignore stop */
