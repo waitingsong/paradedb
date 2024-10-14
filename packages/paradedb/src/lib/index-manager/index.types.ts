@@ -53,9 +53,10 @@ export interface DropBm25Options extends OptionsBase {
  * This is useful for inspecting how an index was configured.
  * @link https://docs.paradedb.com/documentation/indexing/inspect_index
  */
-export interface SchemaOptions extends OptionsBase {
+export interface IndexSchemaOptions extends OptionsBase {
   indexName: string
 }
+
 
 export type IndexSchemaDto = RecordCamelKeys<IndexSchemaDo>
 

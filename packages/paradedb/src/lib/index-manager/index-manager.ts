@@ -6,7 +6,7 @@ import type { Knex, QueryResponse, Transaction } from '../knex.types.js'
 
 import type { ArrayFieldsDo, FieldsDoBase, IndexSchemaDo } from './index.do.js'
 import { IndexSql } from './index.sql.js'
-import { type CreateBm25Options, type DropBm25Options, type IndexSchemaDto, type SchemaOptions } from './index.types.js'
+import { type CreateBm25Options, type DropBm25Options, type IndexSchemaDto, type IndexSchemaOptions } from './index.types.js'
 
 
 export class IndexManager {
@@ -234,7 +234,7 @@ export class IndexManager {
    * This is useful for inspecting how an index was configured.
    * @link https://docs.paradedb.com/documentation/indexing/inspect_index
    */
-  async schema(options: SchemaOptions): Promise<IndexSchemaDto[]> {
+  async schema(options: IndexSchemaOptions): Promise<IndexSchemaDto[]> {
     const { trx, indexName } = options
     assert(indexName, 'indexName is required')
     const sql = IndexSql.IndexSchema
