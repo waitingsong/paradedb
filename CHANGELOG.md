@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/waitingsong/paradedb/compare/v0.3.0...v0.4.0) (2024-10-14)
+
+
+### Features
+
+* **paradedb:** Index Schema via Index.schema() ([578a5ad](https://github.com/waitingsong/paradedb/commit/578a5ad0dc513cd7a6615c6cafa9a3c02177a599))
+
+
+
+
+
 # [0.3.0](https://github.com/waitingsong/paradedb/compare/v0.2.4...v0.3.0) (2024-10-13)
 
 
