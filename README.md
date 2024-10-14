@@ -67,6 +67,12 @@ npm i paradedb
   assert(rows.length, 'Not found')
   ```
 
+- [Index Size]
+  ```ts
+  const size: bigint = await idx.size({ indexName: 'search_idx' })
+  // 0n means not found
+  ```
+
 
 ## License
 [MIT](LICENSE)
