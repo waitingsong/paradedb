@@ -13,10 +13,10 @@ export enum IndexSql {
    * This is useful for inspecting how an index was configured.
    * @link https://docs.paradedb.com/documentation/indexing/inspect_index
    */
-  IndexSchema = 'SELECT * FROM $PARAM.schema()',
+  IndexSchema = 'SELECT * FROM paradedb.schema(?)',
   /**
    * @link https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
    */
-  IndexSize = 'SELECT * FROM $PARAM.index_size()',
+  IndexSize = 'SELECT * FROM paradedb.index_size(?)',
 }
 
