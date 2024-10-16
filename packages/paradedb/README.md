@@ -11,6 +11,10 @@
 We're modernizing the features of Elasticsearch's product suite, 
 starting with real-time search and analytics.
 
+Test successfully with
+- [Paradedb] v0.10
+
+
 ## Packages
 
 | Package    | Version                |
@@ -83,7 +87,7 @@ npm i paradedb
 
 <br>
 
-[paradedb]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
+[ParadeDb]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
 [main-svg]: https://img.shields.io/npm/v/paradedb.svg?maxAge=300
 [main-ch]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/CHANGELOG.md
 

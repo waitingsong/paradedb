@@ -204,7 +204,7 @@ jobs:
           - 16686:16686
 
       paradedb:
-        image: paradedb/paradedb
+        image: paradedb/paradedb:0.10.1
         ports:
           - 5433:5432
         env:
