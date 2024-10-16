@@ -18,6 +18,7 @@ import type {
 export class IndexManager {
   constructor(protected readonly dbh: Knex) { }
 
+  readonly indexSuffix = '_bm25_index'
   fieldsKey = ['textFields', 'numericFields', 'booleanFields', 'datetimeFields', 'jsonFields']
 
   // #region createBm25
@@ -244,9 +245,9 @@ export class IndexManager {
     const { trx, indexName } = options
     assert(indexName, 'indexName is required')
     const sql = IndexSql.IndexSchema
-    const query = sql.replace('$PARAM', `"${indexName}"`)
+    const data = [`${indexName}${this.indexSuffix}`]
     try {
-      const res = await this.execute<QueryResponse<IndexSchemaDo>>(query, [], trx)
+      const res = await this.execute<QueryResponse<IndexSchemaDo>>(sql, data, trx)
       const ret = res.rows.length ? res.rows.map(row => camelKeys(row)) : []
       return ret
     }
@@ -271,9 +272,9 @@ export class IndexManager {
     const { trx, indexName } = options
     assert(indexName, 'indexName is required')
     const sql = IndexSql.IndexSize
-    const query = sql.replace('$PARAM', `"${indexName}"`)
+    const data = [`${indexName}${this.indexSuffix}`]
     try {
-      const res = await this.execute<QueryResponse<IndexSizeDo>>(query, [], trx)
+      const res = await this.execute<QueryResponse<IndexSizeDo>>(sql, data, trx)
       const ret = res.rows[0] ? BigInt(res.rows[0].index_size) : 0n
       return ret
     }

@@ -12,8 +12,7 @@ We're modernizing the features of Elasticsearch's product suite,
 starting with real-time search and analytics.
 
 Test successfully with
-- [Paradedb] v0.10
-- [Paradedb] v0.9
+- [Paradedb] v0.11
 
 
 ## Packages
