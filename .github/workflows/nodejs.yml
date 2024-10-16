@@ -16,7 +16,7 @@ jobs:
       matrix:
         node: ['lts/*', 'current']
         os: [ubuntu-latest]
-        paradedb-version: ['0.9.4', '0.11.1']
+        paradedb-version: ['0.9.4', '0.10.1']
 
     steps:
       - uses: actions/checkout@v4
