@@ -20,6 +20,7 @@ jobs:
       matrix:
         node: ['lts/*']
         os: [ubuntu-latest]
+        paradedb-version: ['0.9.4', '0.10.1']
 
     steps:
       - uses: actions/checkout@v4
@@ -239,7 +240,7 @@ jobs:
           - 16686:16686
 
       paradedb:
-        image: paradedb/paradedb:0.10.1
+        image: paradedb/paradedb:${{ matrix.paradedb-version }}
         ports:
           - 5433:5432
         env:

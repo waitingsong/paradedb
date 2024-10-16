@@ -13,6 +13,7 @@ starting with real-time search and analytics.
 
 Test successfully with
 - [Paradedb] v0.10
+- [Paradedb] v0.9
 
 
 ## Packages
