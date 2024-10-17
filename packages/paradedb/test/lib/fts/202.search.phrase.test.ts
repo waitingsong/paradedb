@@ -11,8 +11,8 @@ import {
   genRandomName,
 } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
+import type { MockItemsDo2, MockItemsDo } from '#@/test.model.js'
 
-import type { MockItemsDo2, MockItemsDo } from './test.search.js'
 import { f1, f2 } from './test.search.js'
 
 

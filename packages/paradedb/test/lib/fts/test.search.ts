@@ -24,18 +24,3 @@ export const f3: TextFieldsDo = {
   fieldName: 'customer_name',
 }
 
-export class MockItemsDo {
-  id: number
-  description: string
-  category: string
-  rating: number
-  in_stock: boolean
-  metadata: Record<string, unknown>
-  created_at: Date
-  last_updated_date: Date
-  latest_available_time: string
-}
-
-export class MockItemsDo2 extends MockItemsDo {
-  score: number
-}

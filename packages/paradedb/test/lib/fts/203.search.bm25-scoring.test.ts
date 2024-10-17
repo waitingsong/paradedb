@@ -5,14 +5,12 @@ import _knex from 'knex'
 
 import {
   type CreateBm25Options,
-  type DropBm25Options,
   type IndexSchemaDto,
   ParadeDb,
-  genRandomName,
 } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
+import type { MockItemsDo2, MockItemsDo } from '#@/test.model.js'
 
-import type { MockItemsDo2, MockItemsDo } from './test.search.js'
 import { f1, f2, f3 } from './test.search.js'
 
 
