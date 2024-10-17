@@ -19,8 +19,8 @@ describe(fileShortPath(import.meta.url), () => {
     await pdb.destroy()
   })
 
-  describe(`Paradedb`, () => {
-    it(`search()`, async () => {
+  describe(`Paradedb.search()`, () => {
+    it(`normal`, async () => {
       const builder = pdb.search('mock_items').limit(1)
       // eslint-disable-next-line @typescript-eslint/no-base-to-string
       const query = builder.toString()
@@ -29,6 +29,17 @@ describe(fileShortPath(import.meta.url), () => {
       assert(rows.length === 1, `rows.length: ${rows.length}`)
     })
 
+    it(`invalid table name`, async () => {
+      try {
+        await pdb.search('FAKE').limit(1)
+      }
+      catch (ex) {
+        assert(ex instanceof Error)
+        assert(ex.message.includes('relation "FAKE" does not exist'), ex.message)
+        return
+      }
+      assert(false, 'should throw Error')
+    })
   })
 })
 
