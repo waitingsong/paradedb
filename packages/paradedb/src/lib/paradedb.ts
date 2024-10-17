@@ -9,8 +9,8 @@ import type { DbConfig, DbConnectionConfig } from './types.js'
 
 
 export class ParadeDb {
-  public readonly index: IndexManager
-  protected readonly dbh: Knex
+  readonly index: IndexManager
+  readonly dbh: Knex
   protected readonly dbConfig: DbConfig
 
   constructor(
@@ -20,7 +20,17 @@ export class ParadeDb {
     this.dbConfig = processDbConfig(dbConfig)
 
     this.dbh = createDbh(this.dbConfig)
+    this.search = this.dbh
     this.index = new IndexManager(this.dbh)
+  }
+
+  /**
+   * Query builder Search
+   * @link https://knexjs.org/guide/query-builder.html
+   */
+  search<T extends object = object>(tableName: string): Knex.QueryBuilder<T, T[]> {
+    const builder = this.dbh(tableName)
+    return builder as Knex.QueryBuilder<T, T[]>
   }
 
   async getCurrentTime(): Promise<Date> {
@@ -50,6 +60,25 @@ export class ParadeDb {
     return ret
   }
 
+  async execute<T = unknown>(sql: string, params: unknown[], trx: Transaction | undefined | null): Promise<T> {
+    const dbh = trx ?? this.dbh
+    try {
+      const res = await dbh.raw(sql, params) as T
+      return res
+    }
+    catch (ex) {
+      if (trx) {
+        await trx.rollback()
+      }
+      console.error('sql:', sql)
+      console.error('params:', params)
+      throw ex
+    }
+  }
+
+  /**
+   * Close the db connection
+   */
   async destroy(): Promise<void> {
     await this.dbh.destroy()
   }
@@ -58,8 +87,7 @@ export class ParadeDb {
 
 
 function createDbh(knexConfig: DbConfig): Knex {
-  // eslint-disable-next-line import/no-named-as-default-member
-  const inst = _knex.knex(knexConfig)
+  const inst = _knex(knexConfig)
   return inst
 }
 

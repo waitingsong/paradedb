@@ -105,7 +105,7 @@ export class IndexManager {
           else {
             const [fieldName, map] = this.convertFieldsItemSimpleToMap(items)
 
-            const txt = `${key2} => paradedb.field(?, ` // fieldName
+            const txt = `${key2} => paradedb.field(?` // fieldName
             data.push(fieldName)
 
             const arr: string[] = []
@@ -113,8 +113,13 @@ export class IndexManager {
               arr.push(`${k} => ?`)
               data.push(v)
             })
-            const txt2 = arr.join(', ')
-            ids.push(`${txt}${txt2})`)
+            if (arr.length > 0) {
+              const txt2 = arr.join(', ')
+              ids.push(`${txt}, ${txt2})`)
+            }
+            else {
+              ids.push(`${txt})`)
+            }
           }
         }
         /* c8 ignore next 3 */

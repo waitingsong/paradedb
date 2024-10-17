@@ -30,6 +30,8 @@ npm i paradedb
 
 ## Usage
 
+### Index
+
 - Initialize ParadeDb instance
   ```ts
   import { ParadeDb, type DbConnectionConfig } from 'paradedb'
@@ -75,6 +77,20 @@ npm i paradedb
   const size: bigint = await idx.size({ indexName: 'search_idx' })
   // 0n means not found
   ```
+
+### Full Text Search
+
+Syntax of knex query builder: https://knexjs.org/guide/query-builder.html
+Examples: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/test/lib/fts
+
+Basic Usage:
+```ts
+const pdb = new ParadeDb('test', dbConfig)
+const rows = await pdb.search<MockItemsDo>(tbl)
+  .whereRaw(`description @@@ :k1`, { k1: 'keyboard' })
+  .orderBy('id', 'desc')
+  .limit(limit)
+```
 
 
 ## License

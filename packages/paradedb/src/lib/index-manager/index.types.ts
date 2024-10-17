@@ -27,7 +27,7 @@ export interface CreateBm25Options extends OptionsBase {
    */
   schemaName?: string
   /**
-   * pass raw string like "paradedb.field('description') || paradedb.field('category')"
+   * @description string: pass raw string like "paradedb.field('description') || paradedb.field('category')", not column name
    */
   textFields?: TextFieldsDo | ArrayFieldsDo<TextFieldsDo> | string
   numericFields?: NumericFieldsDo | ArrayFieldsDo<NumericFieldsDo> | string
