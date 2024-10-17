@@ -1,6 +1,7 @@
 import { type CreateBm25Options, type TextFieldsDo, IndexManager } from '##/index.js'
 
 
+// for generation test, not for create index
 export const options: CreateBm25Options = {
   indexName: 'search_idx',
   tableName: 'mock_items',

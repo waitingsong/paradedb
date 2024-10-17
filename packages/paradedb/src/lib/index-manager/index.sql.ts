@@ -18,5 +18,9 @@ export enum IndexSql {
    * @link https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
    */
   IndexSize = 'SELECT * FROM paradedb.index_size(?)',
+  /**
+   * @link https://docs.paradedb.com/documentation/full-text/scoring#score-refresh
+   */
+  RefreshScore = 'VACUUM $TABLE_NAME',
 }
 
