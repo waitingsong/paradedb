@@ -11,7 +11,7 @@ import {
 import { dbConfig } from '#@/config.unittest.js'
 import { type MockItemsDo2, dbDict } from '#@/model/test.model.js'
 
-import { cols2 as col, f1, f2, f3, options } from './test.search.js'
+import { f1, f2, f3 } from './test.search.js'
 
 
 // https://docs.paradedb.com/documentation/full-text/scoring
@@ -25,21 +25,22 @@ describe(fileShortPath(import.meta.url), () => {
 
   before(async () => {
     await pdb.index.dropBm25({ indexName: 'search_idx' })
-    const opts: CreateBm25Options = {
-      ...options,
+    const options: CreateBm25Options = {
       indexName: idxName,
+      tableName: 'mock_items',
+      keyField: 'id',
       textFields,
     }
-    await pdb.index.createBm25(opts)
+    await pdb.index.createBm25(options)
 
     await pdb.index.dropBm25({ indexName: 'orders_idx' })
-    const options2: CreateBm25Options = {
+    const opts2: CreateBm25Options = {
       indexName: 'orders_idx',
-      tableName: 'orders',
-      keyField: 'order_id',
+      tableName: dbDict.tables.orders,
+      keyField: dbDict.columns.orders.order_id,
       textFields: f3,
     }
-    await pdb.index.createBm25(options2)
+    await pdb.index.createBm25(opts2)
 
     const rows: IndexSchemaDto[] = await pdb.index.schema({ indexName: idxName })
     assert(rows.length > 0, `Index not found: ${idxName}`)
@@ -54,11 +55,12 @@ describe(fileShortPath(import.meta.url), () => {
     const tbl = dbDict.tables.mock_items
 
     it('Basic Usage', async () => {
+      const columns = dbDict.columns.mock_items
       const limit = 1
       const k1 = 'shoes'
-      const col1 = col.id
-      const col2 = col.description
-      const orderBy = col.id
+      const col1 = columns.id
+      const col2 = columns.description
+      const orderBy = columns.id
 
       const rows = await pdb.search<MockItemsDo2>(tbl)
         .select(col1, col2)
@@ -83,11 +85,12 @@ describe(fileShortPath(import.meta.url), () => {
 
     // https://docs.paradedb.com/documentation/full-text/sorting#order-by-relevance
     it('Order by Relevance', async () => {
+      const columns = dbDict.columns.mock_items2
       const limit = 1
       const k1 = 'shoes'
-      const col1 = col.id
-      const col2 = col.description
-      const orderBy = col.score
+      const col1 = columns.id
+      const col2 = columns.description
+      const orderBy = columns.score
 
       const rows = await pdb.search<MockItemsDo2>(tbl)
         .select(col1, col2)

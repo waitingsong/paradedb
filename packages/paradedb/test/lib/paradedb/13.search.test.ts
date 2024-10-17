@@ -5,6 +5,7 @@ import _knex from 'knex'
 
 import { IndexManager, ParadeDb } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
+import { dbDict } from '#@/model/test.model.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -21,7 +22,8 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe(`Paradedb.search()`, () => {
     it(`normal`, async () => {
-      const builder = pdb.search('mock_items').limit(1)
+      const tbl = dbDict.tables.mock_items
+      const builder = pdb.search(tbl).limit(1)
       // eslint-disable-next-line @typescript-eslint/no-base-to-string
       const query = builder.toString()
       assert(query === 'select * from "mock_items" limit 1')

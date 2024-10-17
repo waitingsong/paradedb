@@ -6,13 +6,12 @@ import _knex from 'knex'
 import {
   type CreateBm25Options,
   type DropBm25Options,
-  type IndexSchemaDto,
   IndexManager,
   genRandomName,
 } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
 
-import { f3 } from './test.CreateBm25Options.js'
+import { f3, options } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -26,17 +25,15 @@ describe(fileShortPath(import.meta.url), () => {
   assert(idx)
 
   before(async () => {
-    const options: CreateBm25Options = {
+    const opts: CreateBm25Options = {
+      ...options,
       indexName: idxName,
-      tableName: 'mock_items',
-      keyField: 'id',
       textFields,
     }
-    await idx.createBm25(options)
+    await idx.createBm25(opts)
   })
   after(async () => {
-    const options: DropBm25Options = { indexName: idxName }
-    await idx.dropBm25(options)
+    await idx.dropBm25({ indexName: idxName })
     await dbh.destroy()
   })
 
@@ -48,8 +45,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('not found', async () => {
-      const options: DropBm25Options = { indexName: idxName }
-      await idx.dropBm25(options)
+      await idx.dropBm25({ indexName: idxName })
 
       const size = await idx.size({ indexName: idxName })
       assert(size === 0n)

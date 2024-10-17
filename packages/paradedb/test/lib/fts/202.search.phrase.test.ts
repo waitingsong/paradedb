@@ -5,15 +5,14 @@ import _knex from 'knex'
 
 import {
   type CreateBm25Options,
-  type DropBm25Options,
   type IndexSchemaDto,
   ParadeDb,
   genRandomName,
 } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
-import type { MockItemsDo2, MockItemsDo } from '#@/test.model.js'
+import { type MockItemsDo, dbDict } from '#@/model/test.model.js'
 
-import { f1, f2 } from './test.search.js'
+import { cols, f1, f2, options } from './test.search.js'
 
 
 // https://docs.paradedb.com/documentation/full-text/phrase
@@ -27,27 +26,25 @@ describe(fileShortPath(import.meta.url), () => {
 
   before(async () => {
     await pdb.index.dropBm25({ indexName: 'search_idx' })
-    const options: CreateBm25Options = {
+    const opts: CreateBm25Options = {
+      ...options,
       indexName: idxName,
-      tableName: 'mock_items',
-      keyField: 'id',
       textFields,
     }
-    await pdb.index.createBm25(options)
+    await pdb.index.createBm25(opts)
 
     const rows: IndexSchemaDto[] = await pdb.index.schema({ indexName: idxName })
     assert(rows.length > 0, `Index not found: ${idxName}`)
   })
   after(async () => {
-    const options: DropBm25Options = { indexName: idxName }
-    await pdb.index.dropBm25(options)
+    await pdb.index.dropBm25({ indexName: idxName })
     await pdb.destroy()
   })
 
   describe(`Paradedb.search() ${idxName}`, () => {
-    const tbl = 'mock_items'
-    const col1 = 'description'
-    const orderBy = 'id'
+    const tbl = dbDict.tables.mock_items
+    const col1 = cols.description
+    const orderBy = cols.id
 
     it('Basic Usage', async () => {
       const limit = 1

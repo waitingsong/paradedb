@@ -17,9 +17,19 @@ export class MockItemsDo2 extends MockItemsDo {
   score: number
 }
 
+export class Orders {
+  order_id: number
+  product_id: number
+  order_quantity: number
+  /** numeric */
+  order_total: string
+  customer_name: string
+}
+
 export class Db {
-  'mock_items': MockItemsDo
-  'mock_items2': MockItemsDo2
+  mock_items: MockItemsDo
+  mock_items2: MockItemsDo2
+  orders: Orders
 }
 
 

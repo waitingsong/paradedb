@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "declarationMap": false,
+    "sourceMap": false,
+    "outDir": ".",
+    "rootDir": "."
+  },
+  "include": [
+    "./model"
+  ]
+}

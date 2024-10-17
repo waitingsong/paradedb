@@ -5,7 +5,7 @@ import type { Knex } from 'knex'
 
 import { type CreateBm25Options, IndexManager } from '##/index.js'
 
-import { expectedDataBase, expectedIdsBase, options } from './test.CreateBm25Options.js'
+import { cols, expectedDataBase, expectedIdsBase, options } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -17,7 +17,7 @@ describe(fileShortPath(import.meta.url), () => {
       const opts: CreateBm25Options = {
         ...options,
         numericFields: {
-          fieldName: 'rating',
+          fieldName: cols.rating,
           indexed: true,
         },
       }
@@ -28,7 +28,7 @@ describe(fileShortPath(import.meta.url), () => {
       ]
       const expectedData = [
         ...expectedDataBase,
-        'rating',
+        cols.rating,
         true,
       ]
       assert.deepStrictEqual(ids, expectedIds)

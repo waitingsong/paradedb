@@ -6,7 +6,7 @@ import _knex from 'knex'
 import { type CreateBm25Options, IndexManager, genRandomName } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
 
-import { f1, f2 } from './test.CreateBm25Options.js'
+import { f1, f2, options } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -25,13 +25,12 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe(`Index.createBm25() ${idxName}`, () => {
     it('normal', async () => {
-      const options: CreateBm25Options = {
+      const opts: CreateBm25Options = {
+        ...options,
         indexName: idxName,
-        tableName: 'mock_items',
-        keyField: 'id',
         textFields,
       }
-      await idx.createBm25(options)
+      await idx.createBm25(opts)
 
       const sql2 = `
         CALL paradedb.drop_bm25(

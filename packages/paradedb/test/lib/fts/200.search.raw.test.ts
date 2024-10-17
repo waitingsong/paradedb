@@ -12,7 +12,7 @@ import {
 } from '##/index.js'
 import type { QueryResponse } from '##/lib/knex.types.js'
 import { dbConfig } from '#@/config.unittest.js'
-import type { MockItemsDo } from '#@/test.model.js'
+import type { MockItemsDo } from '#@/model/test.model.js'
 
 import { f1, f2 } from './test.search.js'
 

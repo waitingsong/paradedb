@@ -51,6 +51,10 @@
     "knex": "^3.1.0",
     "pg": "^8.13.0"
   },
+  "devDependencies": {
+    "kmore-cli": "^67.1.1",
+    "kmore-types": "^67.1.1"
+  },
   "engines": {
     "node": ">=18.12.0"
   },
@@ -79,10 +83,11 @@
     "clean:lock": "rm -f package-lock.json",
     "clean:log": "rm -rf ./logs ./run",
     "cov": "c8 --all npm run test",
+    "db:gen": "kmore gen --path ./test/model --project test/tsconfig.db.json",
     "lint": "eslint --fix --cache src test",
     "lint:nofix": "eslint --cache src test",
     "postbuild": "tsc-alias && npm run rp",
-    "pretest": "npm run build:unit",
+    "pretest": "npm run build:unit && npm run db:gen",
     "rp": "tsx bin-hashbang.js",
     "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "test:deb": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",

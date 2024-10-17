@@ -5,7 +5,7 @@ import type { Knex } from 'knex'
 
 import { type CreateBm25Options, IndexManager } from '##/index.js'
 
-import { expectedDataBase, expectedIdsBase, f1, f2, options } from './test.CreateBm25Options.js'
+import { cols, expectedDataBase, expectedIdsBase, f1, f2, options } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -25,7 +25,7 @@ describe(fileShortPath(import.meta.url), () => {
       ]
       const expectedData = [
         ...expectedDataBase,
-        'description',
+        cols.description,
         true,
         false,
         'position',
@@ -53,13 +53,13 @@ describe(fileShortPath(import.meta.url), () => {
       ]
       const expectedData = [
         ...expectedDataBase,
-        'description',
+        cols.description,
         true,
         false,
         'position',
         'raw',
 
-        'category',
+        cols.category,
         false,
         true,
         'basic',
