@@ -86,7 +86,7 @@ npm i paradedb
 Basic Usage:
 ```ts
 const pdb = new ParadeDb('test', dbConfig)
-const rows = await pdb.search<MockItemsDo>(tbl)
+const rows = await pdb.search<MockItemsDo>('mock_items')
   .whereRaw(`description @@@ :k1`, { k1: 'keyboard' })
   .orderBy('id', 'desc')
   .limit(limit)
