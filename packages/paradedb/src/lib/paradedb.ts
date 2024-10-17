@@ -28,6 +28,7 @@ export class ParadeDb {
    * Query builder Search
    * @link https://knexjs.org/guide/query-builder.html
    */
+  /* c8 ignore next 4 coverage coved, but not included */
   search<T extends object = object>(tableName: string): Knex.QueryBuilder<T, T[]> {
     const builder = this.dbh(tableName)
     return builder as Knex.QueryBuilder<T, T[]>
