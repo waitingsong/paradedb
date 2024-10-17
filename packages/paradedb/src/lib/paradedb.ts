@@ -66,6 +66,7 @@ export class ParadeDb {
       const res = await dbh.raw(sql, params) as T
       return res
     }
+    /* c8 ignore start */
     catch (ex) {
       if (trx) {
         await trx.rollback()
@@ -74,6 +75,7 @@ export class ParadeDb {
       console.error('params:', params)
       throw ex
     }
+    /* c8 ignore stop */
   }
 
   /**
