@@ -80,8 +80,8 @@ npm i paradedb
 
 ### Full Text Search
 
-Syntax of knex query builder: https://knexjs.org/guide/query-builder.html
-Examples: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/test/lib/fts
+- [Syntax of knex query builder]
+- [FTS Examples]
 
 Basic Usage:
 ```ts
@@ -121,3 +121,5 @@ const rows = await pdb.search<MockItemsDo>(tbl)
 [Index Schema]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-schema
 [Index Size]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
 
+[Syntax of knex query builder]: https://knexjs.org/guide/query-builder.html
+[FTS Examples]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/test/lib/fts

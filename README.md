@@ -30,6 +30,8 @@ npm i paradedb
 
 ## Usage
 
+### Index
+
 - Initialize ParadeDb instance
   ```ts
   import { ParadeDb, type DbConnectionConfig } from 'paradedb'
@@ -76,6 +78,20 @@ npm i paradedb
   // 0n means not found
   ```
 
+### Full Text Search
+
+- [Syntax of knex query builder]
+- [FTS Examples]
+
+Basic Usage:
+```ts
+const pdb = new ParadeDb('test', dbConfig)
+const rows = await pdb.search<MockItemsDo>(tbl)
+  .whereRaw(`description @@@ :k1`, { k1: 'keyboard' })
+  .orderBy('id', 'desc')
+  .limit(limit)
+```
+
 
 ## License
 [MIT](LICENSE)
@@ -87,7 +103,7 @@ npm i paradedb
 
 <br>
 
-[paradedb]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
+[ParadeDb]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
 [main-svg]: https://img.shields.io/npm/v/paradedb.svg?maxAge=300
 [main-ch]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/CHANGELOG.md
 
@@ -103,4 +119,7 @@ npm i paradedb
 [Create an Index]: https://docs.paradedb.com/documentation/indexing/create_index
 [Drop an Index]: https://docs.paradedb.com/documentation/indexing/delete_index
 [Index Schema]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-schema
+[Index Size]: https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
 
+[Syntax of knex query builder]: https://knexjs.org/guide/query-builder.html
+[FTS Examples]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/test/lib/fts
