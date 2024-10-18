@@ -2,10 +2,23 @@
   "name": "@mwcp/paradedb",
   "author": "waiting",
   "version": "0.0.0",
-  "description": "midway component boilerplate",
+  "description": "ParadeDb JavaScript Client Library Component for Midway.js",
   "private": false,
   "keywords": [
     "midway",
+    "ParadeDb",
+    "elasticsearch",
+    "BM25",
+    "pg_bm25",
+    "HNSW",
+    "pgvector",
+    "sparse-vector",
+    "FTS",
+    "full-text-search",
+    "similarity-search",
+    "hybrid-search",
+    "analytics",
+    "Postgres",
     "IoC",
     "plugin",
     "ts"
@@ -23,16 +36,17 @@
     "./package.json": "./package.json"
   },
   "bugs": {
-    "url": "https://github.com/waitingsong/npm-mono-base/issues"
+    "url": "https://github.com/waitingsong/paradedb/issues"
   },
-  "homepage": "https://github.com/waitingsong/npm-mono-base#readme",
+  "homepage": "https://github.com/waitingsong/paradedb#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/waitingsong/npm-mono-base"
+    "url": "https://github.com/waitingsong/paradedb"
   },
   "license": "MIT",
   "dependencies": {
-    "@mwcp/otel": "^38.0.0"
+    "@mwcp/otel": "^38.0.0",
+    "paradedb": "^0.9.2"
   },
   "devDependencies": {
   },
