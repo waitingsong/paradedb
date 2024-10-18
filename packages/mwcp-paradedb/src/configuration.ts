@@ -1,4 +1,3 @@
-
 import assert from 'node:assert'
 
 import {
@@ -15,7 +14,6 @@ import { TraceInit } from '@mwcp/otel'
 import {
   MConfig,
   deleteRouter,
-  registerMiddleware,
 } from '@mwcp/share'
 import type { Application, IMidwayContainer } from '@mwcp/share'
 
@@ -23,9 +21,9 @@ import * as DefaultConfig from './config/config.default.js'
 import * as LocalConfig from './config/config.local.js'
 import * as UnittestConfig from './config/config.unittest.js'
 import { useComponents } from './imports.js'
+import { ParadeDbManager } from './lib/paradedb-manager.js'
 import { ConfigKey } from './lib/types.js'
 import type { Config, MiddlewareConfig } from './lib/types.js'
-import { DemoMiddleware } from './middleware/index.middleware.js'
 
 
 @Configuration({
@@ -52,6 +50,8 @@ export class AutoConfiguration implements ILifeCycle {
   @MConfig(ConfigKey.config) protected readonly config: Config
   @MConfig(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
+  @Inject() protected readonly dbSourceManager: ParadeDbManager
+
   async onConfigLoad(): Promise<void> {
     /* c8 ignore next 3 */
     if (! this.config.enableDefaultRoute) {
@@ -69,15 +69,13 @@ export class AutoConfiguration implements ILifeCycle {
       this.app,
       'this.app undefined. If start for development, please set env first like `export MIDWAY_SERVER_ENV=local`',
     )
+  }
 
-    const isDevelopmentEnvironment = this.environmentService.isDevelopmentEnvironment()
-    const { enableMiddleware } = this.mwConfig
-
-    if (enableMiddleware && isDevelopmentEnvironment) {
-      registerMiddleware(this.app, DemoMiddleware)
-    }
-
-    this.logger.info(`[${ConfigKey.componentName}] onReady`)
+  async onStop(container: IMidwayContainer): Promise<void> {
+    void container
+    this.logger.info(`[${ConfigKey.componentName}] stopping`)
+    await this.dbSourceManager.stop()
+    this.logger.info(`[${ConfigKey.componentName}] stopped`)
   }
 
 }

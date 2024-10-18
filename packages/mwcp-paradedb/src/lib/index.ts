@@ -1,13 +1,11 @@
 
 export * from './config.js'
-export { DemoComponent } from './component-singleton.js'
-export { Demo2Component } from './component-request.js'
+export * from './paradedb-manager.js'
 
 export {
-  type Config as DemoConfig,
-  type MiddlewareConfig as DemoMiddlewareConfig,
-  type MiddlewareOptions as DemoMiddlewareOptions,
-  ConfigKey as DemoConfigKey,
-  Msg as DemoMsg,
+  type Config as ParadeDbConfig,
+  type DbConfig,
+  type ParadeDbSourceConfig,
+  ConfigKey as ParadeDbConfigKey,
 } from './types.js'
 

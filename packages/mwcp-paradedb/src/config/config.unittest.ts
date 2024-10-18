@@ -1,26 +1,24 @@
-import { initialConfig, initialMiddlewareConfig } from '##/lib/config.js'
-import type { Config, MiddlewareConfig } from '##/lib/types.js'
+import { initDbConfig } from '##/lib/config.js'
+import type { Config } from '##/lib/types.js'
 
 
-export const keys: string = Date.now().toString()
+export const keys = Date.now().toString()
 export const koa = {
   port: 7001,
 }
 
-export const demoConfig: Readonly<Config> = {
-  ...initialConfig,
+export const paradedbConfig: Config = {
   enableDefaultRoute: true,
+  enableApi: true,
+  dataSource: {
+    default: {
+      ...initDbConfig,
+    },
+  },
+  defaultDataSourceName: 'default',
 }
-
-export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
-  ...initialMiddlewareConfig,
-  enableMiddleware: true,
-  ignore: [
-    '/',
-    '/ping',
-    '/favicon.ico',
-    '/favicon.png',
-    '/_info',
-  ],
+/* c8 ignore next 4 */
+if (paradedbConfig.dataSource['default']?.connection && ! paradedbConfig.dataSource['default'].connection.password) {
+  // docker run -d --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 quay.io/tembo/pgmq-pg:latest
+  paradedbConfig.dataSource['default'].connection.password = 'postgres'
 }
-

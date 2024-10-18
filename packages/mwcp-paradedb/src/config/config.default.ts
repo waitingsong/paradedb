@@ -1,25 +1,23 @@
 import type { RouterOption } from '@midwayjs/core'
 
-import {
-  initMiddlewareOptions,
-  initialConfig,
-  initialMiddlewareConfig,
-} from '##/lib/config.js'
+import { initDbConfig, initMiddlewareOptions, initialMiddlewareConfig } from '##/lib/config.js'
 import type { Config, MiddlewareConfig } from '##/lib/types.js'
 
 
-export const demoConfig: Readonly<Config> = {
-  ...initialConfig,
+export const paradedbConfig: Config = {
+  enableDefaultRoute: false,
+  enableApi: false,
+  dataSource: {
+    default: {
+      ...initDbConfig,
+    },
+  },
+  defaultDataSourceName: 'default',
 }
 
-export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
+export const paradedbMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
   ...initialMiddlewareConfig,
-  ignore: [
-    '/',
-    '/ping',
-    '/favicon.ico',
-    '/favicon.png',
-  ],
+  ignore: [],
   options: {
     ...initMiddlewareOptions,
   },

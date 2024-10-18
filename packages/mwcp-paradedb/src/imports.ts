@@ -1,6 +1,7 @@
 import * as info from '@midwayjs/info'
 import * as koa from '@midwayjs/koa'
 import * as swagger from '@midwayjs/swagger'
+import * as ValidateService from '@midwayjs/validate'
 import * as otel from '@mwcp/otel'
 
 
@@ -11,7 +12,7 @@ const CI = !! (process.env['MIDWAY_SERVER_ENV'] === 'unittest'
   || process.env['NODE_ENV'] === 'local'
 )
 
-export const useComponents: IComponentInfo[] = []
+export const useComponents: IComponentInfo[] = [ValidateService]
 if (CI) {
   useComponents.push(otel)
   useComponents.push(koa)

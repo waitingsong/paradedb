@@ -17,15 +17,18 @@ Test successfully with
 
 ## Packages
 
-| Package    | Version                |
-| ---------- | ---------------------- |
-| [paradedb] | [![main-svg]][main-ch] |
+| Package          | Version                |
+| ---------------- | ---------------------- |
+| [paradedb]       | [![main-svg]][main-ch] |
+| [@mwcp/paradedb] | [![cli-svg]][cli-ch]   |
 
 
 ## Installation
 
 ```sh
 npm i paradedb 
+// OR
+npm i @mwcp/paradedb
 ```
 
 ## Usage
@@ -92,6 +95,28 @@ const rows = await pdb.search<MockItemsDo>('mock_items')
   .limit(limit)
 ```
 
+## Midway.js Component
+
+### Configuration
+
+Update project `src/configuration.ts`
+```ts
+import { Configuration } from '@midwayjs/core'
+import * as pdb from '@mwcp/paradedb'
+
+@Configuration({
+  imports: [ pdb ],
+  importConfigs: [join(__dirname, 'config')],
+})
+export class ContainerConfiguration implements ILifeCycle {
+}
+```
+
+## Usage
+
+[Example](https://github.com/waitingsong/paradedb/blob/main/packages/mwcp-paradedb/test/fixtures/base-app/src/paradedb-manager.ts#L29)
+
+
 
 ## License
 [MIT](LICENSE)
@@ -108,9 +133,9 @@ const rows = await pdb.search<MockItemsDo>('mock_items')
 [main-ch]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/CHANGELOG.md
 
 
-[`demo-cli`]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-cli
-[cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=300
-[cli-ch]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-clie/CHANGELOG.md
+[@mwcp/paradedb]: https://github.com/waitingsong/paradedb/tree/main/packages/mwcp-paradedb
+[cli-svg]: https://img.shields.io/npm/v/@mwcp/paradedb.svg?maxAge=300
+[cli-ch]: https://github.com/waitingsong/paradedb/tree/main/packages/mwcp-paradedb/CHANGELOG.md
 
 
 [Midway.js]: https://midwayjs.org/

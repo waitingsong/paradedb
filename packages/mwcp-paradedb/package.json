@@ -49,6 +49,8 @@
     "paradedb": "^0.9.2"
   },
   "devDependencies": {
+    "kmore-cli": "^67.1.1",
+    "kmore-types": "^67.1.1"
   },
   "engines": {
     "node": ">=18.12.0",
