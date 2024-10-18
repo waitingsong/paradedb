@@ -27,6 +27,11 @@ export type {
   TextFieldsDo,
 } from 'paradedb'
 
+export {
+  type DbDict,
+  genDbDict,
+} from 'kmore-types'
+
 declare module '@midwayjs/core/dist/interface.js' {
   interface MidwayConfig {
     [ConfigKey.config]: Partial<Config>

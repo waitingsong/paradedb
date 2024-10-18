@@ -46,11 +46,11 @@
   "license": "MIT",
   "dependencies": {
     "@mwcp/otel": "^38.0.0",
+    "kmore-types": "^67.1.1",
     "paradedb": "^0.10.0"
   },
   "devDependencies": {
-    "kmore-cli": "^67.1.1",
-    "kmore-types": "^67.1.1"
+    "kmore-cli": "^67.1.1"
   },
   "engines": {
     "node": ">=18.12.0",

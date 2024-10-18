@@ -1,6 +1,4 @@
-import { genDbDict } from 'kmore-types'
-
-import type { CreateBm25Options, TextFieldsDo } from './types/index.js'
+import { type CreateBm25Options, type TextFieldsDo, genDbDict } from './types/index.js'
 
 
 export class MockItemsDo {
