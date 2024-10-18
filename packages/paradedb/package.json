@@ -88,6 +88,7 @@
     "lint:nofix": "eslint --cache src test",
     "postbuild": "tsc-alias && npm run rp",
     "pretest": "npm run build:unit && npm run db:gen",
+    "posttest": "rm -rf ./test/model/*.js",
     "rp": "tsx bin-hashbang.js",
     "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "test:deb": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
