@@ -1,3 +1,4 @@
+/* eslint-disable max-depth */
 import assert from 'node:assert'
 
 import { camelKeys, camelToSnake } from '@waiting/shared-core'
@@ -70,7 +71,7 @@ export class IndexManager {
               assert(subItem, 'ArrayFieldsObjectDo.values[0] undefined')
               const [fieldName, map] = this.convertFieldsItemSimpleToMap(subItem)
 
-              const txt = `${key2} => paradedb.field(?, ` // fieldName
+              const txt = `${key2} => paradedb.field(?` // fieldName
               data.push(fieldName)
 
               const arr: string[] = []
@@ -78,8 +79,14 @@ export class IndexManager {
                 arr.push(`${k} => ?`)
                 data.push(v)
               })
-              const txt2 = arr.join(', ')
-              ids.push(`${txt}${txt2})`)
+
+              if (arr.length) {
+                const txt2 = arr.join(', ')
+                ids.push(`${txt}, ${txt2})`)
+              }
+              else {
+                ids.push(`${txt})`)
+              }
             }
             else { // multiple items
               // text_fields => paradedb.field('description') || paradedb.field('category'),
@@ -87,7 +94,7 @@ export class IndexManager {
               for (const subItem of items) {
                 const [fieldName, map] = this.convertFieldsItemSimpleToMap(subItem)
 
-                const txt = `paradedb.field(?, ` // fieldName
+                const txt = `paradedb.field(?` // fieldName
                 data.push(fieldName)
 
                 const arr: string[] = []
@@ -95,8 +102,14 @@ export class IndexManager {
                   arr.push(`${k} => ?`)
                   data.push(v)
                 })
-                const txt2 = arr.join(', ')
-                tmpIds.push(`${txt}${txt2})`)
+
+                if (arr.length) {
+                  const txt2 = arr.join(', ')
+                  tmpIds.push(`${txt}, ${txt2})`)
+                }
+                else {
+                  tmpIds.push(`${txt})`)
+                }
               }
 
               ids.push(`${key2} => ` + tmpIds.join(' || '))
