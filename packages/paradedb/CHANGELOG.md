@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/waitingsong/paradedb/compare/v0.11.1...v0.12.0) (2024-11-09)
+
+
+### Features
+
+* **paradedb:** add DbConfig optional property version ([1e97e37](https://github.com/waitingsong/paradedb/commit/1e97e37687b4698a8ff94395bcc6253d643ed5a7))
+
+
+
+
+
 # [0.11.0](https://github.com/waitingsong/paradedb/compare/v0.10.0...v0.11.0) (2024-10-18)
 
 **Note:** Version bump only for package paradedb
