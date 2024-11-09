@@ -23,5 +23,6 @@ export const initDbConfig: DbConfig = {
     // propagateCreateError: false,
   },
   acquireConnectionTimeout: 30000,
+  version: process.env['PARADEDB_VER'] ? process.env['PARADEDB_VER'] : 'latest',
 }
 
