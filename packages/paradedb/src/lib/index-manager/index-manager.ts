@@ -19,7 +19,10 @@ import type {
 export class IndexManager {
   constructor(protected readonly dbh: Knex) { }
 
-  readonly indexSuffix = '_bm25_index'
+  /**
+   * Not suffix since paradedb v0.12.0
+   */
+  indexSuffix = '_bm25_index'
   fieldsKey = ['textFields', 'numericFields', 'booleanFields', 'datetimeFields', 'jsonFields']
 
   // #region createBm25
