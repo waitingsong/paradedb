@@ -20,7 +20,7 @@ jobs:
       matrix:
         node: ['lts/*']
         os: [ubuntu-latest]
-        paradedb-version: ['0.11.0']
+        paradedb-version: ['latest']
 
     steps:
       - uses: actions/checkout@v4
@@ -154,6 +154,7 @@ jobs:
           PARADEDB_DB: db_ci_test
           PARADEDB_USER: postgres
           PARADEDB_PASSWORD: postgres
+          PARADEDB_VER: ${{ matrix.paradedb-version }}
 
       - name: Testing
         run: |
@@ -178,6 +179,7 @@ jobs:
           PARADEDB_DB: db_ci_test
           PARADEDB_USER: postgres
           PARADEDB_PASSWORD: postgres
+          PARADEDB_VER: ${{ matrix.paradedb-version }}
           # redis
           REDIS_HOST: redis
           REDIS_PORT: 6379

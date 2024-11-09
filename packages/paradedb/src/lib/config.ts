@@ -11,6 +11,7 @@ export const initDbConnectionConfig: DbConnectionConfig = {
 }
 
 export const initDbConfigPart: Omit<DbConfig, 'connection'> = {
+  version: process.env['PARADEDB_VER'] ? process.env['PARADEDB_VER'] : 'latest',
   client: 'pg',
   pool: {
     min: 0,

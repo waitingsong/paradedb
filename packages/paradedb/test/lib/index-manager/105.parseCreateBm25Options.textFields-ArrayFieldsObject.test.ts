@@ -4,13 +4,14 @@ import { fileShortPath } from '@waiting/shared-core'
 import type { Knex } from 'knex'
 
 import { type CreateBm25Options, IndexManager } from '##/index.js'
+import { dbConfig } from '#@/config.unittest.js'
 
 import { cols, expectedDataBase, expectedIdsBase, f1, f2, options } from './test.CreateBm25Options.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   const dbh = void 0 as unknown as Knex
-  const idx = new IndexManager(dbh)
+  const idx = new IndexManager(dbh, dbConfig.version)
 
   describe(`IndexManager.parseCreateBm25Options()`, () => {
     it('with textFields: ArrayFieldsObject<TextFields> only one item', async () => {

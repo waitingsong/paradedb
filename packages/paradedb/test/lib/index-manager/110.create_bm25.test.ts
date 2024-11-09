@@ -16,7 +16,7 @@ describe(fileShortPath(import.meta.url), () => {
   // eslint-disable-next-line import/no-named-as-default-member
   const dbh = _knex.knex(dbConfig)
   assert(dbh)
-  const idx = new IndexManager(dbh)
+  const idx = new IndexManager(dbh, dbConfig.version)
   assert(idx)
 
   after(async () => {

@@ -17,12 +17,21 @@ import type {
 
 
 export class IndexManager {
-  constructor(protected readonly dbh: Knex) { }
+  constructor(
+    protected readonly dbh: Knex,
+    version?: string,
+  ) {
+    if (version && ['0.11.0', '0.11.1'].includes(version)) {
+      this.indexSuffix = '_bm25_index'
+    }
+  }
 
   /**
-   * Not suffix since paradedb v0.12.0
+   * $PARADEDB_VER
+   * - '_bm25_index' for paradedb v0.11.0
+   * - '' for paradedb v0.12.0
    */
-  indexSuffix = '_bm25_index'
+  indexSuffix = ''
   fieldsKey = ['textFields', 'numericFields', 'booleanFields', 'datetimeFields', 'jsonFields']
 
   // #region createBm25

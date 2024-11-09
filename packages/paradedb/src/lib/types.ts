@@ -7,6 +7,12 @@ import type { Transaction } from './knex.types.js'
 export interface DbConfig extends Knex.Config {
   client: DbClient
   connection: DbConnectionConfig
+  /**
+   * The version of the paradedb extension
+   * env: PARADEDB_VER
+   * @example 0.12.0
+   */
+  version?: string
 }
 
 export type DbClient = 'pg' | 'pg-native'

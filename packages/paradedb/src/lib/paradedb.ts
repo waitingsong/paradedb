@@ -21,7 +21,7 @@ export class ParadeDb {
 
     this.dbh = createDbh(this.dbConfig)
     this.search = this.dbh
-    this.index = new IndexManager(this.dbh)
+    this.index = new IndexManager(this.dbh, this.dbConfig.version)
   }
 
   /**
