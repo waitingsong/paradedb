@@ -45,7 +45,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@mwcp/otel": "^39.1.0",
+    "@mwcp/otel": "^41.0.0",
     "kmore-types": "^67.1.1",
     "paradedb": "^0.12.0"
   },
