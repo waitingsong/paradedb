@@ -1,4 +1,4 @@
-# [ParadeDb] JavaScript Client Library
+# [ParadeDB] JavaScript Client Library
 
 [![GitHub tag](https://img.shields.io/github/tag/waitingsong/paradedb.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -20,7 +20,7 @@ Test successfully with
 
 | Package          | Version                |
 | ---------------- | ---------------------- |
-| [paradedb]       | [![main-svg]][main-ch] |
+| [paradedb-js]    | [![main-svg]][main-ch] |
 | [@mwcp/paradedb] | [![cli-svg]][cli-ch]   |
 
 
@@ -129,7 +129,7 @@ export class ContainerConfiguration implements ILifeCycle {
 
 <br>
 
-[ParadeDb]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
+[paradedb-js]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb
 [main-svg]: https://img.shields.io/npm/v/paradedb.svg?maxAge=300
 [main-ch]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/CHANGELOG.md
 
