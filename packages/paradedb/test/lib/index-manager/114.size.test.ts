@@ -29,6 +29,8 @@ describe(fileShortPath(import.meta.url), () => {
       ...options,
       indexName: idxName,
       textFields,
+      // for paradedb version >= 0.13
+      columns: [f3.fieldName],
     }
     await idx.createBm25(opts)
   })

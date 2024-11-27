@@ -15,17 +15,21 @@ import type {
 
 
 /**
- * Create an Index
+ * Create an Index for version < 0.13
  * @link https://docs.paradedb.com/documentation/indexing/create_index
  */
 export interface CreateBm25Options extends OptionsBase {
-  indexName: string
+  indexName?: string
   tableName: string
   keyField: string
   /**
    * @default CURRENT SCHEMA
    */
   schemaName?: string
+  /**
+   * for version >= 0.13
+   */
+  columns?: string[]
   /**
    * @description string: pass raw string like "paradedb.field('description') || paradedb.field('category')", not column name
    */
@@ -37,7 +41,7 @@ export interface CreateBm25Options extends OptionsBase {
 }
 
 /**
- * Drop an Index
+ * Drop an Index for version < 0.13
  * @link https://docs.paradedb.com/documentation/indexing/delete_index
  */
 export interface DropBm25Options extends OptionsBase {

@@ -4,6 +4,7 @@ export enum IndexSql {
    * @link https://docs.paradedb.com/documentation/indexing/create_index#basic-usage
    */
   create_bm25 = 'CALL paradedb.create_bm25($PARAMS)',
+  create_bm25_new = 'CREATE INDEX $index_name ON $table_name USING bm25 ($columns) WITH ($key_field)',
   /**
    * @link https://docs.paradedb.com/documentation/indexing/delete_index
    */

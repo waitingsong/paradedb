@@ -7,6 +7,7 @@ import type { Knex, QueryResponse, Transaction } from '../knex.types.js'
 
 import { IndexManager011 } from './index-manager-011.js'
 import { IndexManager012 } from './index-manager-012.js'
+import { IndexManager013 } from './index-manager-013.js'
 import type { IndexSchemaDo, IndexSizeDo } from './index.do.js'
 import { IndexSql } from './index.sql.js'
 import type {
@@ -26,6 +27,7 @@ export class IndexManager {
 
   indexManager011: IndexManager011
   indexManager012: IndexManager012
+  indexManager013: IndexManager013
 
   /**
    * $PARADEDB_VER
@@ -44,6 +46,7 @@ export class IndexManager {
     }
     this.indexManager011 = new IndexManager011(dbh)
     this.indexManager012 = new IndexManager012(dbh)
+    this.indexManager013 = new IndexManager013(dbh)
   }
 
   // #region createBm25
@@ -54,6 +57,11 @@ export class IndexManager {
    */
   async createBm25(options: CreateBm25Options): Promise<void> {
     await this.initVersion()
+
+    if (this.isDb013) {
+      assert(options.columns, 'columns is required')
+      return this.indexManager013.createBm25New(options)
+    }
     if (this.isDb012) {
       return this.indexManager012.createBm25(options)
     }
@@ -72,13 +80,15 @@ export class IndexManager {
    */
   async dropBm25(options: DropBm25Options): Promise<void> {
     await this.initVersion()
+
     if (this.isDb012) {
       return this.indexManager012.dropBm25(options)
     }
     if (this.isDb011) {
       return this.indexManager011.dropBm25(options)
     }
-    throw new Error(`Not implemented for version ${this.version}`)
+
+    return this.indexManager013.dropBm25New(options)
   }
 
   // #region schema

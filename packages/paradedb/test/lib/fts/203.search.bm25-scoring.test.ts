@@ -29,6 +29,8 @@ describe(fileShortPath(import.meta.url), () => {
       ...options,
       indexName: idxName,
       textFields,
+      // for paradedb version >= 0.13
+      columns: [f1.fieldName, f2.fieldName],
     }
     await pdb.index.createBm25(opts)
 
@@ -38,6 +40,8 @@ describe(fileShortPath(import.meta.url), () => {
       tableName: 'orders',
       keyField: 'order_id',
       textFields: f3,
+      // for paradedb version >= 0.13
+      columns: [f3.fieldName],
     }
     await pdb.index.createBm25(options2)
 

@@ -29,16 +29,12 @@ describe(fileShortPath(import.meta.url), () => {
         ...options,
         indexName: idxName,
         textFields,
+        // for paradedb version >= 0.13
+        columns: [f1.fieldName, f2.fieldName],
       }
       await idx.createBm25(opts)
 
-      const sql2 = `
-        CALL paradedb.drop_bm25(
-          index_name => ?
-        );
-      `
-      const data2 = [idxName]
-      await idx.execute(sql2, data2, null)
+      await idx.dropBm25({ indexName: idxName })
     })
   })
 

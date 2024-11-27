@@ -3,13 +3,14 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 import _knex from 'knex'
 
-import { type Transaction, IndexManager, genRandomName } from '##/index.js'
+import { type Transaction, IndexManager, ParadeDb, genRandomName } from '##/index.js'
 import { dbConfig } from '#@/config.unittest.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   const idxName = genRandomName(6)
   let trx: Transaction
+  const pdb = new ParadeDb('test', dbConfig)
 
   // eslint-disable-next-line import/no-named-as-default-member
   const dbh = _knex.knex(dbConfig)
@@ -46,10 +47,18 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe(`paradedb.create_bm25 ${idxName}`, () => {
     it('normal', async () => {
-      await idx.execute(sql, data, trx)
+      const version = await pdb.getSearchVersion()
+      if (version.startsWith('0.11')) {
+        await idx.execute(sql, data, trx)
+      }
     })
 
     it('duplicate creation', async () => {
+      const version = await pdb.getSearchVersion()
+      if (! version.startsWith('0.11')) {
+        return
+      }
+
       try {
         await idx.execute(sql, data, trx)
       }
@@ -70,6 +79,11 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('paradedb.drop_bm25', () => {
     it('normal', async () => {
+      const version = await pdb.getSearchVersion()
+      if (! version.startsWith('0.11')) {
+        return
+      }
+
       await idx.execute(sql, data, trx)
 
       const sql2 = `

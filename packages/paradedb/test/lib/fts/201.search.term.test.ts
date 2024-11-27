@@ -28,6 +28,8 @@ describe(fileShortPath(import.meta.url), () => {
       ...options,
       indexName: idxName,
       textFields,
+      // for paradedb version >= 0.13
+      columns: [f1.fieldName, f2.fieldName],
     }
     await pdb.index.createBm25(opts)
 

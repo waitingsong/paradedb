@@ -30,6 +30,8 @@ describe(fileShortPath(import.meta.url), () => {
       tableName: 'mock_items',
       keyField: 'id',
       textFields,
+      // for paradedb version >= 0.13
+      columns: [f1.fieldName, f2.fieldName],
     }
     await pdb.index.createBm25(options)
 
