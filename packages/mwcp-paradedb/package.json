@@ -1,7 +1,7 @@
 {
   "name": "@mwcp/paradedb",
   "author": "waiting",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "ParadeDb JavaScript Client Library Component for Midway.js",
   "private": false,
   "keywords": [
@@ -47,7 +47,7 @@
   "dependencies": {
     "@mwcp/otel": "^41.0.0",
     "kmore-types": "^67.3.0",
-    "paradedb": "^0.13.1"
+    "paradedb": "^0.13.2"
   },
   "devDependencies": {
     "kmore-cli": "^67.3.0"
