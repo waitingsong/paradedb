@@ -14,6 +14,7 @@ starting with real-time search and analytics.
 Test successfully with
 - [Paradedb] v0.11
 - [Paradedb] v0.12
+- [Paradedb] v0.13
 
 
 ## Packages
