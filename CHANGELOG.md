@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/waitingsong/paradedb/compare/v0.13.2...v0.13.3) (2024-11-27)
+
+
+### Bug Fixes
+
+* **paradedb:** normalize CreateBm25Options ([c3e212e](https://github.com/waitingsong/paradedb/commit/c3e212e837b2d0c0d0c30eda36e7b2de230be578))
+
+
+### Features
+
+* **paradedb:** supports ParadeDb v0.13 ([4b25a4a](https://github.com/waitingsong/paradedb/commit/4b25a4a85bd50f4ac9e94836e3b2675656821945))
+
+
+
+
+
 ## [0.13.2](https://github.com/waitingsong/paradedb/compare/v0.13.1...v0.13.2) (2024-11-27)
 
 

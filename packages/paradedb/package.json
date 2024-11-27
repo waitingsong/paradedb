@@ -1,7 +1,7 @@
 {
   "name": "paradedb",
   "author": "waiting",
-  "version": "0.13.2",
+  "version": "0.13.3",
   "description": "ParadeDb JavaScript Client Library",
   "private": false,
   "keywords": [
