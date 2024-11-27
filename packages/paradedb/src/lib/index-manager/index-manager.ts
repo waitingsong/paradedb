@@ -41,6 +41,9 @@ export class IndexManager {
     version?: string,
   ) {
     this.version = version ?? ''
+    if (this.version === 'latest') {
+      this.version = ''
+    }
     if (this.version) {
       this.setVersionFlag(this.version)
     }
@@ -209,7 +212,7 @@ export class IndexManager {
   private setVersionFlag(version: string) {
     assert(version, 'version is required')
     const ver = semver.coerce(version)
-    assert(ver, 'Invalid version')
+    assert(ver, 'Invalid parade db search version: ' + version)
 
     if (semver.gte(ver, '0.13.0')) {
       this.isDb013 = true
