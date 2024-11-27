@@ -37,6 +37,13 @@ describe(fileShortPath(import.meta.url), () => {
       await trx.rollback()
     })
 
+    it(`getSearchVersion()`, async () => {
+      const ver = await pdb.getSearchVersion()
+      console.log('pg_search version:', ver)
+      assert(ver)
+      const regex = /\d+\.\d+\.\d+/u
+      assert(regex.test(ver), 'pg_search version invalid')
+    })
   })
 })
 

@@ -4,7 +4,7 @@ import { genRandomString as _genRandomString } from '@waiting/shared-core'
 export interface RespCommon {
   rows: [{ currenttime: Date }]
 }
-export function parseRespCommon(res: RespCommon): Date {
+export function parseCurrentTimeRespCommon(res: RespCommon): Date {
   return res.rows[0].currenttime
 }
 
