@@ -63,9 +63,11 @@ export class IndexManager {
       return this.indexManager013.createBm25New(options)
     }
     if (this.isDb012) {
+      delete options.columns
       return this.indexManager012.createBm25(options)
     }
     if (this.isDb011) {
+      delete options.columns
       return this.indexManager011.createBm25(options)
     }
 
