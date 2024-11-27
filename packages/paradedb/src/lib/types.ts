@@ -10,7 +10,7 @@ export interface DbConfig extends Knex.Config {
   /**
    * The version of the paradedb extension
    * env: PARADEDB_VER
-   * @example 0.12.0
+   * @example 0.13.0
    */
   version?: string
 }

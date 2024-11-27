@@ -1,12 +1,10 @@
-import assert from 'node:assert'
-
 import type { Knex } from 'knex'
 import _knex from 'knex'
 
 import { initDbConfigPart, initDbConnectionConfig } from './config.js'
 import { type RespCommon, parseCurrentTimeRespCommon } from './helper.js'
 import { IndexManager } from './index-manager/index-manager.js'
-import type { QueryResponse, Transaction } from './knex.types.js'
+import type { Transaction } from './knex.types.js'
 import type { DbConfig, DbConnectionConfig } from './types.js'
 
 
@@ -41,14 +39,7 @@ export class ParadeDb {
    * @returns version string eg. "0.13.0"
    */
   async getSearchVersion(): Promise<string> {
-    const res = await this.execute<QueryResponse<{ extversion: string }>>(
-      'SELECT extname, extversion FROM pg_extension WHERE extname = ?',
-      ['pg_search'],
-      null,
-    )
-    const [row] = res.rows
-    assert(row, 'pg_search not found')
-    return row.extversion
+    return this.index.getSearchVersion()
   }
 
   async getCurrentTime(): Promise<Date> {

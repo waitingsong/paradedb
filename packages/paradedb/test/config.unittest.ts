@@ -3,7 +3,7 @@ import type { DbConfig } from '##/lib/types.js'
 
 
 export const dbConfig: DbConfig = {
-  version: process.env['PARADEDB_VER'] ? process.env['PARADEDB_VER'] : 'latest',
+  version: process.env['PARADEDB_VER'] ? process.env['PARADEDB_VER'] : '',
   client: 'pg',
   connection: {
     ...initDbConnectionConfig,
