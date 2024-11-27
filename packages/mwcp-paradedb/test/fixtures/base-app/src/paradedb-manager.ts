@@ -30,6 +30,7 @@ export class HomeController {
     assert(pdb, 'should exist')
     assert(typeof pdb.search === 'function', 'should be function')
 
+    assert(createBm25Options.indexName, 'indexName should exist')
     await pdb.index.dropBm25({ indexName: createBm25Options.indexName })
     await pdb.index.createBm25(createBm25Options)
 

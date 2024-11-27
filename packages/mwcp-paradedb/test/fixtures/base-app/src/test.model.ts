@@ -48,5 +48,7 @@ export const createBm25Options: CreateBm25Options = {
   tableName: dbDict.tables.mock_items,
   keyField: cols.id,
   textFields: [f1, f2],
+  // for paradedb version >= 0.13
+  columns: [f1.fieldName, f2.fieldName],
 }
 
