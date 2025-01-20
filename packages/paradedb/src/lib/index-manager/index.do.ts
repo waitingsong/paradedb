@@ -12,7 +12,7 @@ export interface FieldsDoBase {
    */
   indexed?: boolean
   /**
-   * @default true
+   * @default false, true prior to version 0.14
    */
   stored?: boolean
   /**

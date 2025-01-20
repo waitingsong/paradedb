@@ -1,4 +1,5 @@
 import type { CreateBm25Options, TextFieldsDo } from '##/index.js'
+import { dbConfig } from '#@/config.unittest.js'
 import { dbDict } from '#@/model/test.model.js'
 
 
@@ -32,7 +33,7 @@ export const f3: TextFieldsDo = {
   fast: false,
   fieldnorms: true,
   indexed: true,
-  stored: true,
+  stored: dbConfig.version?.startsWith('0.14.') ? false : true,
   record: 'position',
   normalizer: 'raw',
 }
