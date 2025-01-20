@@ -15,6 +15,7 @@ Test successfully with
 - [Paradedb] v0.11
 - [Paradedb] v0.12
 - [Paradedb] v0.13
+- [Paradedb] v0.14
 
 
 ## Packages
