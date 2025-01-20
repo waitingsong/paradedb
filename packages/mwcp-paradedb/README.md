@@ -1,4 +1,4 @@
-# [ParadeDB] JavaScript Client Library
+# Midway.js [ParadeDB] Component
 
 [![GitHub tag](https://img.shields.io/github/tag/waitingsong/paradedb.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
