@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { initDbConnectionConfig } from '##/lib/config.js'
 import type { DbConfig } from '##/lib/types.js'
 

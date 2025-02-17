@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { initDbConnectionConfig } from 'paradedb'
 
 import type { DbConfig, MiddlewareConfig, MiddlewareOptions } from './types.js'

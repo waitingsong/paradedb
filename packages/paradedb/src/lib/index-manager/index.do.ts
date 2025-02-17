@@ -12,7 +12,7 @@ export interface FieldsDoBase {
    */
   indexed?: boolean
   /**
-   * @default true
+   * @default false, true prior to version 0.14
    */
   stored?: boolean
   /**
@@ -131,7 +131,9 @@ export interface IndexSchemaDo {
 }
 
 export interface IndexSizeDo {
-  index_size: string
+  [x: string]: string | number | bigint | boolean
+  index_size?: string
+  pg_relation_size?: string
 }
 
 /* c8 ignore stop */

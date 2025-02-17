@@ -1,8 +1,16 @@
+import assert from 'node:assert'
+
+import semver from 'semver'
+
 import type { CreateBm25Options, TextFieldsDo } from '##/index.js'
+import { dbConfig } from '#@/config.unittest.js'
 import { dbDict } from '#@/model/test.model.js'
 
 
 export const cols = dbDict.columns.mock_items
+
+const ver = dbConfig.version ? semver.coerce(dbConfig.version) : '0.14.0'
+assert(ver, 'Invalid parade db search version')
 
 // for generation test, not for create index
 export const options: CreateBm25Options = {
@@ -32,7 +40,7 @@ export const f3: TextFieldsDo = {
   fast: false,
   fieldnorms: true,
   indexed: true,
-  stored: true,
+  stored: semver.gte(ver, '0.14.0') ? false : true,
   record: 'position',
   normalizer: 'raw',
 }

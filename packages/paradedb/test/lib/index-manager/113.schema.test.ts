@@ -52,7 +52,7 @@ describe(fileShortPath(import.meta.url), () => {
           assert(row.indexed === f3.indexed)
           // assert(row.normalizer === f1.normalizer)
           assert(row.record === f3.record)
-          assert(row.stored === f3.stored)
+          assert(row.stored === f3.stored, `row.stored: ${row.stored}, f3.stored: ${f3.stored}, row: ${JSON.stringify(row)}`)
           return true
         }
       })

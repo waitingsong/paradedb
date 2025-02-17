@@ -8,6 +8,7 @@ import type { Knex, QueryResponse, Transaction } from '../knex.types.js'
 import { IndexManager011 } from './index-manager-011.js'
 import { IndexManager012 } from './index-manager-012.js'
 import { IndexManager013 } from './index-manager-013.js'
+import { IndexManager014 } from './index-manager-014.js'
 import type { IndexSchemaDo, IndexSizeDo } from './index.do.js'
 import { IndexSql } from './index.sql.js'
 import type {
@@ -24,10 +25,12 @@ export class IndexManager {
   isDb011 = false
   isDb012 = false
   isDb013 = false
+  isDb014 = false
 
   indexManager011: IndexManager011
   indexManager012: IndexManager012
   indexManager013: IndexManager013
+  indexManager014: IndexManager014
 
   /**
    * $PARADEDB_VER
@@ -50,6 +53,7 @@ export class IndexManager {
     this.indexManager011 = new IndexManager011(dbh)
     this.indexManager012 = new IndexManager012(dbh)
     this.indexManager013 = new IndexManager013(dbh)
+    this.indexManager014 = new IndexManager014(dbh)
   }
 
   // #region createBm25
@@ -61,6 +65,10 @@ export class IndexManager {
   async createBm25(options: CreateBm25Options): Promise<void> {
     await this.initVersion()
 
+    if (this.isDb014) {
+      assert(options.columns, 'columns is required')
+      return this.indexManager014.createBm25New(options)
+    }
     if (this.isDb013) {
       assert(options.columns, 'columns is required')
       return this.indexManager013.createBm25New(options)
@@ -134,13 +142,18 @@ export class IndexManager {
    */
   async size(options: IndexSizeOptions): Promise<bigint> {
     await this.initVersion()
+
+    if (this.isDb014 || ! this.version) {
+      return this.indexManager014.size(options)
+    }
+
     const { trx, indexName } = options
     assert(indexName, 'indexName is required')
     const sql = IndexSql.IndexSize
     const data = [`${indexName}${this.indexSuffix}`]
     try {
       const res = await this.execute<QueryResponse<IndexSizeDo>>(sql, data, trx)
-      const ret = res.rows[0] ? BigInt(res.rows[0].index_size) : 0n
+      const ret = res.rows[0]?.index_size ? BigInt(res.rows[0]?.index_size) : 0n
       return ret
     }
     catch (ex) {
@@ -213,6 +226,11 @@ export class IndexManager {
     assert(version, 'version is required')
     const ver = semver.coerce(version)
     assert(ver, 'Invalid parade db search version: ' + version)
+
+    if (semver.gte(ver, '0.14.0')) {
+      this.isDb014 = true
+      return
+    }
 
     if (semver.gte(ver, '0.13.0')) {
       this.isDb013 = true

@@ -19,6 +19,7 @@ export enum IndexSql {
    * @link https://docs.paradedb.com/documentation/indexing/inspect_index#index-size
    */
   IndexSize = 'SELECT * FROM paradedb.index_size(?)',
+  IndexSize014 = 'SELECT pg_relation_size(?)',
   /**
    * @link https://docs.paradedb.com/documentation/full-text/scoring#score-refresh
    */
