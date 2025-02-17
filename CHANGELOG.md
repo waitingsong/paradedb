@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/waitingsong/paradedb/compare/v0.13.3...v0.14.0) (2025-02-17)
+
+
+### Features
+
+* update for paradedb v0.14 ([d9e27a8](https://github.com/waitingsong/paradedb/commit/d9e27a8fa28bf9c0cb99d686df302c530c7d5c87))
+
+
+
+
+
 ## [0.13.3](https://github.com/waitingsong/paradedb/compare/v0.13.2...v0.13.3) (2024-11-27)
 
 
