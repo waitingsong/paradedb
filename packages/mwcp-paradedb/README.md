@@ -16,6 +16,7 @@ Test successfully with
 - [Paradedb] v0.12
 - [Paradedb] v0.13
 - [Paradedb] v0.14
+- [Paradedb] v0.15 ([Query Builder] not supported)
 
 
 ## Packages
@@ -151,3 +152,4 @@ export class ContainerConfiguration implements ILifeCycle {
 
 [Syntax of knex query builder]: https://knexjs.org/guide/query-builder.html
 [FTS Examples]: https://github.com/waitingsong/paradedb/tree/main/packages/paradedb/test/lib/fts
+[Query Builder]: https://docs.paradedb.com/documentation/advanced/overview
